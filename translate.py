@@ -3,7 +3,7 @@
 import sys
 
 def translate_sequence(rna_sequence, genetic_code):
-    """Translates a sequence of RNA into a sequence of amino acids.
+    """Translate a sequence of RNA into a sequence of amino acids.
 
     Translates `rna_sequence` into string of amino acids, according to the
     `genetic_code` given as a dict. Translation begins at the first position of
@@ -64,38 +64,43 @@ def get_all_translations(rna_sequence, genetic_code):
     pass
 
 def get_reverse(sequence):
-    """Reverse orientation of `sequence`.
-
-    Returns a string with `sequence` in the reverse order.
-
-    If `sequence` is empty, an empty string is returned.
-
-    Examples
-    --------
-    >>> get_reverse('AUGC')
-    'CGUA'
-    >>> get_reverse('ATGC')
-    'CGTA'
-    """
+    sequence = input("input a sequence: ")
+    #print("DNA :", sequence)
+    reverseDNA = sequence [::-1]
+    print("reverse is: ", reverseDNA)
     pass
 
 def get_complement(sequence):
-    """Get the complement of a `sequence` of nucleotides.
-
-    Returns a string with the complementary sequence of `sequence`.
-
-    If `sequence` is empty, an empty string is returned.
-
-    Examples
-    --------
-    >>> get_reverse('AUGC')
-    'UACG'
-    >>> get_reverse('ATGC')
-    'TACG'
-    """
+    sequence = input("Enter DNA sequence: ")
+    print ("DNA: ", sequence)
+    complement = ""
+    for i in sequence:
+        if i == "A":
+            complement += "T"
+        if i == "T":
+            complement += "A"
+        if i == "C":
+            complement += "G"
+        if i == "G":
+            complement += "C"
+    print ("DNA complement: ", complement)
     pass
 
 def reverse_and_complement(sequence):
+    sequence = input("input a sequence: ")
+    reverseDNA = sequence [::-1]
+    print ("reverse: ", reverseDNA)
+    rev_and_comp = ""
+    for i in reverseDNA:
+        if i == "A":
+            complement += "T"
+        if i == "T":
+            complement += "A"
+        if i == "C":
+            complement += "G"
+        if i == "G":
+            complement += "C"
+    print ("reverse and complement is: ", rev_and_comp)
     """Get the reversed and complemented form of a `sequence` of nucleotides.
 
     Returns a string that is the reversed and complemented sequence
@@ -170,3 +175,4 @@ if __name__ == '__main__':
     sys.stdout.write(message)
     if longest_peptide == "MYWHATAPYTHQNISTA":
         sys.stdout.write("Indeed.\n")
+
