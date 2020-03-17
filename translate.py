@@ -20,34 +20,47 @@ def translate_sequence(rna_sequence, genetic_code):
             protein =  protein.replace('*', '')
     return protein
     pass
-"""Translate a sequence of RNA into a sequence of amino acids.
 
-    Translates `rna_sequence` into string of amino acids, according to the
-    `genetic_code` given as a dict. Translation begins at the first position of
-    the `rna_sequence` and continues until the first stop codon is encountered
-    or the end of `rna_sequence` is reached.
-
-    If `rna_sequence` is less than 3 bases long, or starts with a stop codon,
-    an empty string is returned.
-
-    Parameters
-    ----------
-    rna_sequence : str
-        A string representing an RNA sequence (upper or lower-case).
-
-    genetic_code : dict
-        A dictionary mapping all 64 codons (strings of three RNA bases) to
-        amino acids (string of single-letter amino acid abbreviation). Stop
-        codons should be represented with asterisks ('*').
-
-    Returns
-    -------
-    str
-        A string of the translated amino acids.
-    """
 
 def get_all_translations(rna_sequence, genetic_code):
-    """Get a list of all amino acid sequences encoded by an RNA sequence.
+    rna_seqs = rna_sequence.upper()
+    protein = []
+    if rna_seqs.count('AUG') == 0:
+        protein = []
+    if rna_seqs.count('AUG') == 1:
+        protein = ['M']
+    if rna_seqs.count('AUG') == 2:
+        rna_seqs = rna_seqs.split('AUG', 1)
+        rna_seqs = ''.join(rna_seqs)
+        for i in range (0, len(rna_seqs), 3):
+            codon = rna_seqs[i:i + 3]
+            protein+= genetic_code[codon]
+
+    #rna_seqs = rna_seqs.split(sep, 1)[0]
+    #rna_seqs_list = rna_seqs.split('AUG')
+    #sep = 'AUG'
+    #rna_seqs_list = [e+sep for e in rna_seqs_list(sep) if e]
+    #if len(rna_seqs_list) >= 3:
+    """for i in range (0, len(rna_seqs), 3):
+            codon = rna_seqs[i:i + 3]
+            protein+= genetic_code[codon]"""
+        #if len(rna_seqs)%3 == 1:
+            #rna_seqs = rna_seqs[:-1]
+    #    for name in rna_seqs_list:
+         # (0, len(rna_seqs_list), 3):
+    #        codon = rna_seqs_list[name:name + 3]
+    #        protein+= genetic_code[codon]
+    #        protein = ['M'+name for name in protein(name) if e]
+    #    for i in range(0,len(protein)):
+    #        protein[i] = str(protein[i])
+    return protein
+        #if '*' in str(protein):
+            #sep = '*'
+            #protein = protein.split(sep, 1)[0]
+            #protein =  protein.replace('*', '')
+    #sep = 'M'
+    #protein = protein.split(sep, 1)[0] 
+"""Get a list of all amino acid sequences encoded by an RNA sequence.
 
     All three reading frames of `rna_sequence` are scanned from 'left' to
     'right', and the generation of a sequence of amino acids is started
@@ -77,7 +90,7 @@ def get_all_translations(rna_sequence, genetic_code):
         A list of strings; each string is an sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+pass
 
 def get_reverse(sequence):
     seqs = list(sequence.upper())
