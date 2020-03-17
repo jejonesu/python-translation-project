@@ -3,7 +3,19 @@
 import sys
 
 def translate_sequence(rna_sequence, genetic_code):
-    """Translate a sequence of RNA into a sequence of amino acids.
+    rna_seqs = rna_sequence.upper()
+    protein = ""
+    if len(rna_seqs)%3 == 0:
+        for i in range (0, len(rna_seqs), 3):
+            codon = rna_seqs[i:i + 3]
+            protein+= genetic_code[codon]
+    #elif len(rna_seqs)%3 == 1:
+    #    for i in range (0, len(rna_seqs), 3):
+    #        codon = rna_seqs[i:i + 3]
+    #        protein+= genetic_code[codon]
+    return protein
+
+"""Translate a sequence of RNA into a sequence of amino acids.
 
     Translates `rna_sequence` into string of amino acids, according to the
     `genetic_code` given as a dict. Translation begins at the first position of
@@ -28,7 +40,7 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    pass
+pass
 
 def get_all_translations(rna_sequence, genetic_code):
     """Get a list of all amino acid sequences encoded by an RNA sequence.
@@ -64,57 +76,42 @@ def get_all_translations(rna_sequence, genetic_code):
     pass
 
 def get_reverse(sequence):
-    sequence = input("input a sequence: ")
-    #print("DNA :", sequence)
-    reverseDNA = sequence [::-1]
-    print("reverse is: ", reverseDNA)
+    seqs = list(sequence.upper())
+    rev_seqs = seqs[::-1]
+    reversed = ("".join(rev_seqs))
+    return reversed
     pass
 
 def get_complement(sequence):
-    sequence = input("Enter DNA sequence: ")
-    print ("DNA: ", sequence)
+    sequence = list(sequence.upper())
     complement = ""
     for i in sequence:
         if i == "A":
-            complement += "T"
-        if i == "T":
+            complement += "U"
+        if i == "U":
             complement += "A"
         if i == "C":
             complement += "G"
         if i == "G":
             complement += "C"
-    print ("DNA complement: ", complement)
+    return complement
     pass
 
 def reverse_and_complement(sequence):
-    sequence = input("input a sequence: ")
-    reverseDNA = sequence [::-1]
-    print ("reverse: ", reverseDNA)
-    rev_and_comp = ""
-    for i in reverseDNA:
+    seqs = list(sequence.upper())
+    rev_seqs = seqs[::-1]
+    reversed = ("".join(rev_seqs))
+    complement = ""
+    for i in reversed:
         if i == "A":
-            complement += "T"
-        if i == "T":
+            complement += "U"
+        if i == "U":
             complement += "A"
         if i == "C":
             complement += "G"
         if i == "G":
             complement += "C"
-    print ("reverse and complement is: ", rev_and_comp)
-    """Get the reversed and complemented form of a `sequence` of nucleotides.
-
-    Returns a string that is the reversed and complemented sequence
-    of `sequence`.
-
-    If `sequence` is empty, an empty string is returned.
-
-    Examples
-    --------
-    >>> reverse_and_complement('AUGC')
-    'GCAU'
-    >>> reverse_and_complement('ATGC')
-    'GCAT'
-    """
+    return complement
     pass
 
 def get_longest_peptide(rna_sequence, genetic_code):
