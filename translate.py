@@ -6,11 +6,18 @@ def translate_sequence(rna_sequence, genetic_code):
     rna_seqs = rna_sequence.upper()
     protein = ""
     if len(rna_seqs) >= 3:
+        """for i in range (0, len(rna_seqs), 3):
+            codon = rna_seqs[i:i + 3]
+            protein+= genetic_code[codon]"""
+        if len(rna_seqs)%3 == 1:
+            rna_seqs = rna_seqs[:-1]
         for i in range (0, len(rna_seqs), 3):
             codon = rna_seqs[i:i + 3]
             protein+= genetic_code[codon]
-            if '*' in str(protein):
-                protein =  protein.replace('*', '')
+        if '*' in str(protein):
+            sep = '*'
+            protein = protein.split(sep, 1)[0]
+            protein =  protein.replace('*', '')
     return protein
     pass
 """Translate a sequence of RNA into a sequence of amino acids.
