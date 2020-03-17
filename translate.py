@@ -5,16 +5,14 @@ import sys
 def translate_sequence(rna_sequence, genetic_code):
     rna_seqs = rna_sequence.upper()
     protein = ""
-    if len(rna_seqs)%3 == 0:
+    if len(rna_seqs) >= 3:
         for i in range (0, len(rna_seqs), 3):
             codon = rna_seqs[i:i + 3]
             protein+= genetic_code[codon]
-    #elif len(rna_seqs)%3 == 1:
-    #    for i in range (0, len(rna_seqs), 3):
-    #        codon = rna_seqs[i:i + 3]
-    #        protein+= genetic_code[codon]
+            if '*' in str(protein):
+                protein =  protein.replace('*', '')
     return protein
-
+    pass
 """Translate a sequence of RNA into a sequence of amino acids.
 
     Translates `rna_sequence` into string of amino acids, according to the
@@ -40,7 +38,6 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-pass
 
 def get_all_translations(rna_sequence, genetic_code):
     """Get a list of all amino acid sequences encoded by an RNA sequence.
