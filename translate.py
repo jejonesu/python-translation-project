@@ -30,12 +30,21 @@ def get_all_translations(rna_sequence, genetic_code):
     if rna_seqs.count('AUG') == 1:
         protein = ['M']
     if rna_seqs.count('AUG') == 2:
-        rna_seqs = rna_seqs.split('AUG', 1)
-        rna_seqs = ''.join(rna_seqs)
-        for i in range (0, len(rna_seqs), 3):
-            codon = rna_seqs[i:i + 3]
-            protein+= genetic_code[codon]
+        rna_seqs = rna_seqs.split('AUG')
+        if rna_seqs.count('') == 1:
+            del rna_seqs[0]
+            for section in rna_seqs:
+                codon = rna_seqs[section:section + 3]
+                protein+= genetic_code[codon]
 
+
+        #if rna_seqs.count('') == 0:
+        #    rna_seqs
+        #rna_seqs = ''.join(rna_seqs)
+        #for i in range (0, len(rna_seqs), 3):
+        #    codon = rna_seqs[i:i + 3]
+        #    protein+= genetic_code[codon]
+        #    protein = ''.join(protein)
     #rna_seqs = rna_seqs.split(sep, 1)[0]
     #rna_seqs_list = rna_seqs.split('AUG')
     #sep = 'AUG'
